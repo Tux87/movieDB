@@ -1,20 +1,47 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello TvShowController!{% endblock %}
+{% block title %}TvShow index{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <h1>TvShow index</h1>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Synopsis</th>
+                <th>Image</th>
+                <th>NbLikes</th>
+                <th>PublishedAt</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for tv_show in tv_shows %}
+            <tr>
+                <td>{{ tv_show.id }}</td>
+                <td>{{ tv_show.title }}</td>
+                <td>{{ tv_show.synopsis }}</td>
+                <td>{{ tv_show.image }}</td>
+                <td>{{ tv_show.nbLikes }}</td>
+                <td>{{ tv_show.publishedAt ? tv_show.publishedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ tv_show.createdAt ? tv_show.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ tv_show.updatedAt ? tv_show.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('tv_show_show', {'id': tv_show.id}) }}">show</a>
+                    <a href="{{ path('tv_show_edit', {'id': tv_show.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/student/Bureau/Projet/movieDB/movieDB/src/Controller/TvShowController.php'|file_link(0) }}">src/Controller/TvShowController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/student/Bureau/Projet/movieDB/movieDB/templates/tv_show/index.html.twig'|file_link(0) }}">templates/tv_show/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <a href="{{ path('tv_show_new') }}">Create new</a>
 {% endblock %}

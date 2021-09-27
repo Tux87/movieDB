@@ -124,6 +124,18 @@
     "psr/log": {
         "version": "1.1.4"
     },
+    "sensio/framework-extra-bundle": {
+        "version": "5.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "5.2",
+            "ref": "fb7e19da7f013d0d422fa9bce16f5c510e27609b"
+        },
+        "files": [
+            "config/packages/sensio_framework_extra.yaml"
+        ]
+    },
     "symfony/asset": {
         "version": "v5.3.4"
     },
@@ -260,6 +272,9 @@
     "symfony/options-resolver": {
         "version": "v5.3.7"
     },
+    "symfony/password-hasher": {
+        "version": "v5.3.7"
+    },
     "symfony/polyfill-intl-grapheme": {
         "version": "v1.23.1"
     },
@@ -306,6 +321,12 @@
     "symfony/runtime": {
         "version": "v5.3.4"
     },
+    "symfony/security-core": {
+        "version": "v5.3.7"
+    },
+    "symfony/security-csrf": {
+        "version": "v5.3.4"
+    },
     "symfony/service-contracts": {
         "version": "v2.4.0"
     },
@@ -332,6 +353,19 @@
         "files": [
             "config/packages/twig.yaml",
             "templates/base.html.twig"
+        ]
+    },
+    "symfony/validator": {
+        "version": "4.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "4.3",
+            "ref": "3eb8df139ec05414489d55b97603c5f6ca0c44cb"
+        },
+        "files": [
+            "config/packages/test/validator.yaml",
+            "config/packages/validator.yaml"
         ]
     },
     "symfony/var-dumper": {

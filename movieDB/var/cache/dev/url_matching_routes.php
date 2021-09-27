@@ -13,6 +13,11 @@ return [
         '/_profiler/search_bar' => [[['_route' => '_profiler_search_bar', '_controller' => 'web_profiler.controller.profiler::searchBarAction'], null, null, null, false, false, null]],
         '/_profiler/phpinfo' => [[['_route' => '_profiler_phpinfo', '_controller' => 'web_profiler.controller.profiler::phpinfoAction'], null, null, null, false, false, null]],
         '/_profiler/open' => [[['_route' => '_profiler_open_file', '_controller' => 'web_profiler.controller.profiler::openAction'], null, null, null, false, false, null]],
+        '/category' => [[['_route' => 'category', '_controller' => 'App\\Controller\\CategoryController::index'], null, null, null, false, false, null]],
+        '/character' => [[['_route' => 'character', '_controller' => 'App\\Controller\\CharacterController::index'], null, null, null, false, false, null]],
+        '/episode' => [[['_route' => 'episode', '_controller' => 'App\\Controller\\EpisodeController::index'], null, null, null, false, false, null]],
+        '/season' => [[['_route' => 'season', '_controller' => 'App\\Controller\\SeasonController::index'], null, null, null, false, false, null]],
+        '/tv/show' => [[['_route' => 'tv_show', '_controller' => 'App\\Controller\\TvShowController::index'], null, null, null, false, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'

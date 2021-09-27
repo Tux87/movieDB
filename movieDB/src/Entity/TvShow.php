@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\TvShowRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -51,6 +53,28 @@ class TvShow
      * @ORM\Column(type="datetime_immutable", nullable=true)
      */
     private $updatedAt;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Season::class, mappedBy="tvShow")
+     */
+    private $Season;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Character::class, inversedBy="tvShows")
+     */
+    private $Cast;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="tvShows")
+     */
+    private $Category;
+
+    public function __construct()
+    {
+        $this->Season = new ArrayCollection();
+        $this->Cast = new ArrayCollection();
+        $this->Category = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -137,6 +161,84 @@ class TvShow
     public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Season[]
+     */
+    public function getSeason(): Collection
+    {
+        return $this->Season;
+    }
+
+    public function addSeason(Season $season): self
+    {
+        if (!$this->Season->contains($season)) {
+            $this->Season[] = $season;
+            $season->setTvShow($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSeason(Season $season): self
+    {
+        if ($this->Season->removeElement($season)) {
+            // set the owning side to null (unless already changed)
+            if ($season->getTvShow() === $this) {
+                $season->setTvShow(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Character[]
+     */
+    public function getCast(): Collection
+    {
+        return $this->Cast;
+    }
+
+    public function addCast(Character $cast): self
+    {
+        if (!$this->Cast->contains($cast)) {
+            $this->Cast[] = $cast;
+        }
+
+        return $this;
+    }
+
+    public function removeCast(Character $cast): self
+    {
+        $this->Cast->removeElement($cast);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Category[]
+     */
+    public function getCategory(): Collection
+    {
+        return $this->Category;
+    }
+
+    public function addCategory(Category $category): self
+    {
+        if (!$this->Category->contains($category)) {
+            $this->Category[] = $category;
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Category $category): self
+    {
+        $this->Category->removeElement($category);
 
         return $this;
     }

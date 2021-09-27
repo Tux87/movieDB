@@ -282,6 +282,34 @@
       <tag name="controller.service_arguments"/>
       <tag name="routing.route_loader"/>
     </service>
+    <service id="App\Controller\CategoryController" class="App\Controller\CategoryController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.W9y3dzm.App\Controller\CategoryController"/>
+      </call>
+    </service>
+    <service id="App\Controller\CharacterController" class="App\Controller\CharacterController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.W9y3dzm.App\Controller\CharacterController"/>
+      </call>
+    </service>
+    <service id="App\Controller\EpisodeController" class="App\Controller\EpisodeController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.W9y3dzm.App\Controller\EpisodeController"/>
+      </call>
+    </service>
+    <service id="App\Controller\TvShowController" class="App\Controller\TvShowController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.W9y3dzm.App\Controller\TvShowController"/>
+      </call>
+    </service>
     <service id="App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" autoconfigure="true">
       <tag name="doctrine.fixture.orm"/>
     </service>
@@ -3239,6 +3267,18 @@
     <service id="doctrine.fixtures.purger.orm_purger_factory" class="Doctrine\Bundle\FixturesBundle\Purger\ORMPurgerFactory">
       <tag name="doctrine.fixtures.purger_factory" alias="default"/>
     </service>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\CategoryController" class="App\Controller\CategoryController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\CategoryController" class="App\Controller\CategoryController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\CategoryController" class="App\Controller\CategoryController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\CharacterController" class="App\Controller\CharacterController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\CharacterController" class="App\Controller\CharacterController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\CharacterController" class="App\Controller\CharacterController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\EpisodeController" class="App\Controller\EpisodeController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\EpisodeController" class="App\Controller\EpisodeController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\EpisodeController" class="App\Controller\EpisodeController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\TvShowController" class="App\Controller\TvShowController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\TvShowController" class="App\Controller\TvShowController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\TvShowController" class="App\Controller\TvShowController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\FixturesBundle\ORMFixtureInterface.0.App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\CategoryRepository" class="App\Repository\CategoryRepository" autowire="true" abstract="true"/>
@@ -3777,6 +3817,43 @@
       <configurator class="Symfony\Bundle\FrameworkBundle\DependencyInjection\Compiler\AddDebugLogProcessorPass" method="configureLogger"/>
     </service>
     <service id="monolog.handler.null_internal" class="Monolog\Handler\NullHandler"/>
+    <service id=".service_locator.W9y3dzm" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="doctrine" type="service_closure" id="doctrine" on-invalid="ignore"/>
+        <argument key="form.factory" type="service_closure" id="form.factory" on-invalid="ignore"/>
+        <argument key="http_kernel" type="service_closure" id="http_kernel" on-invalid="ignore"/>
+        <argument key="parameter_bag" type="service_closure" id="parameter_bag" on-invalid="ignore"/>
+        <argument key="request_stack" type="service_closure" id="request_stack" on-invalid="ignore"/>
+        <argument key="router" type="service_closure" id="router.default" on-invalid="ignore"/>
+        <argument key="session" type="service_closure" id=".session.deprecated" on-invalid="ignore"/>
+        <argument key="twig" type="service_closure" id="twig" on-invalid="ignore"/>
+      </argument>
+    </service>
+    <service id=".service_locator.W9y3dzm.App\Controller\CategoryController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\CategoryController"/>
+      <argument>App\Controller\CategoryController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.W9y3dzm" method="withContext"/>
+    </service>
+    <service id=".service_locator.W9y3dzm.App\Controller\CharacterController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\CharacterController"/>
+      <argument>App\Controller\CharacterController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.W9y3dzm" method="withContext"/>
+    </service>
+    <service id=".service_locator.W9y3dzm.App\Controller\EpisodeController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\EpisodeController"/>
+      <argument>App\Controller\EpisodeController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.W9y3dzm" method="withContext"/>
+    </service>
+    <service id=".service_locator.W9y3dzm.App\Controller\TvShowController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\TvShowController"/>
+      <argument>App\Controller\TvShowController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.W9y3dzm" method="withContext"/>
+    </service>
     <service id=".service_locator.pKWmPfh" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -4576,6 +4653,7 @@
     <service id="Psr\Log\LoggerInterface $debugLogger" alias="monolog.logger.debug"/>
     <service id=".service_locator._5g_Wvc" alias=".service_locator.KfwZsne"/>
     <service id=".service_locator.JBAFp66" alias=".service_locator.KfbR3DY"/>
+    <service id=".service_locator.Utg6bR0" alias=".service_locator.W9y3dzm"/>
     <service id="event_dispatcher" alias="debug.event_dispatcher" public="true"/>
     <service id="controller_resolver" alias="debug.controller_resolver"/>
     <service id="argument_resolver" alias="debug.argument_resolver"/>

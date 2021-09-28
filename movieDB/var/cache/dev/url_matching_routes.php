@@ -13,6 +13,16 @@ return [
         '/_profiler/search_bar' => [[['_route' => '_profiler_search_bar', '_controller' => 'web_profiler.controller.profiler::searchBarAction'], null, null, null, false, false, null]],
         '/_profiler/phpinfo' => [[['_route' => '_profiler_phpinfo', '_controller' => 'web_profiler.controller.profiler::phpinfoAction'], null, null, null, false, false, null]],
         '/_profiler/open' => [[['_route' => '_profiler_open_file', '_controller' => 'web_profiler.controller.profiler::openAction'], null, null, null, false, false, null]],
+        '/backoffice/category' => [[['_route' => 'backoffice_category_index', '_controller' => 'App\\Controller\\Backoffice\\CategoryController::index'], null, ['GET' => 0], null, true, false, null]],
+        '/backoffice/category/new' => [[['_route' => 'backoffice_category_new', '_controller' => 'App\\Controller\\Backoffice\\CategoryController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        '/backoffice/character' => [[['_route' => 'backoffice_character_index', '_controller' => 'App\\Controller\\Backoffice\\CharacterController::index'], null, ['GET' => 0], null, true, false, null]],
+        '/backoffice/character/new' => [[['_route' => 'backoffice_character_new', '_controller' => 'App\\Controller\\Backoffice\\CharacterController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        '/backoffice/episode' => [[['_route' => 'backoffice_episode_index', '_controller' => 'App\\Controller\\Backoffice\\EpisodeController::index'], null, ['GET' => 0], null, true, false, null]],
+        '/backoffice/episode/new' => [[['_route' => 'backoffice_episode_new', '_controller' => 'App\\Controller\\Backoffice\\EpisodeController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        '/backoffice/season' => [[['_route' => 'backoffice_season_index', '_controller' => 'App\\Controller\\Backoffice\\SeasonController::index'], null, ['GET' => 0], null, true, false, null]],
+        '/backoffice/season/new' => [[['_route' => 'backoffice_season_new', '_controller' => 'App\\Controller\\Backoffice\\SeasonController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        '/backoffice/tv/show' => [[['_route' => 'backoffice_tv_show_index', '_controller' => 'App\\Controller\\Backoffice\\TvShowController::index'], null, ['GET' => 0], null, true, false, null]],
+        '/backoffice/tv/show/new' => [[['_route' => 'backoffice_tv_show_new', '_controller' => 'App\\Controller\\Backoffice\\TvShowController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/category' => [[['_route' => 'category_index', '_controller' => 'App\\Controller\\CategoryController::index'], null, ['GET' => 0], null, true, false, null]],
         '/category/new' => [[['_route' => 'category_new', '_controller' => 'App\\Controller\\CategoryController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/character' => [[['_route' => 'character_index', '_controller' => 'App\\Controller\\CharacterController::index'], null, ['GET' => 0], null, true, false, null]],
@@ -43,34 +53,63 @@ return [
                         .'|(*:124)'
                     .')'
                 .')'
+                .'|/backoffice/(?'
+                    .'|c(?'
+                        .'|ategory/([^/]++)(?'
+                            .'|(*:172)'
+                            .'|/edit(*:185)'
+                            .'|(*:193)'
+                        .')'
+                        .'|haracter/([^/]++)(?'
+                            .'|(*:222)'
+                            .'|/edit(*:235)'
+                            .'|(*:243)'
+                        .')'
+                    .')'
+                    .'|episode/([^/]++)(?'
+                        .'|(*:272)'
+                        .'|/edit(*:285)'
+                        .'|(*:293)'
+                    .')'
+                    .'|season/([^/]++)(?'
+                        .'|(*:320)'
+                        .'|/edit(*:333)'
+                        .'|(*:341)'
+                    .')'
+                    .'|tv/show/([^/]++)(?'
+                        .'|(*:369)'
+                        .'|/edit(*:382)'
+                        .'|(*:390)'
+                    .')'
+                .')'
                 .'|/c(?'
                     .'|ategory/([^/]++)(?'
-                        .'|(*:158)'
-                        .'|/edit(*:171)'
-                        .'|(*:179)'
+                        .'|(*:424)'
+                        .'|/edit(*:437)'
+                        .'|(*:445)'
                     .')'
                     .'|haracter/([^/]++)(?'
-                        .'|(*:208)'
-                        .'|/edit(*:221)'
-                        .'|(*:229)'
+                        .'|(*:474)'
+                        .'|/edit(*:487)'
+                        .'|(*:495)'
                     .')'
                 .')'
                 .'|/episode/([^/]++)(?'
-                    .'|(*:259)'
-                    .'|/edit(*:272)'
-                    .'|(*:280)'
+                    .'|(*:525)'
+                    .'|/edit(*:538)'
+                    .'|(*:546)'
                 .')'
                 .'|/season/([^/]++)(?'
-                    .'|(*:308)'
-                    .'|/edit(*:321)'
-                    .'|(*:329)'
+                    .'|(*:574)'
+                    .'|/edit(*:587)'
+                    .'|(*:595)'
                 .')'
                 .'|/([^/]++)(?'
-                    .'|(*:350)'
-                    .'|/edit(*:363)'
-                    .'|(*:371)'
+                    .'|(*:616)'
+                    .'|/edit(*:629)'
+                    .'|(*:637)'
                 .')'
-                .'|/_error/(\\d+)(?:\\.([^/]++))?(*:408)'
+                .'|/_error/(\\d+)(?:\\.([^/]++))?(*:674)'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
@@ -80,22 +119,37 @@ return [
         101 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception_panel::body'], ['token'], null, null, false, false, null]],
         114 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
         124 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
-        158 => [[['_route' => 'category_show', '_controller' => 'App\\Controller\\CategoryController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        171 => [[['_route' => 'category_edit', '_controller' => 'App\\Controller\\CategoryController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        179 => [[['_route' => 'category_delete', '_controller' => 'App\\Controller\\CategoryController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        208 => [[['_route' => 'character_show', '_controller' => 'App\\Controller\\CharacterController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        221 => [[['_route' => 'character_edit', '_controller' => 'App\\Controller\\CharacterController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        229 => [[['_route' => 'character_delete', '_controller' => 'App\\Controller\\CharacterController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        259 => [[['_route' => 'episode_show', '_controller' => 'App\\Controller\\EpisodeController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        272 => [[['_route' => 'episode_edit', '_controller' => 'App\\Controller\\EpisodeController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        280 => [[['_route' => 'episode_delete', '_controller' => 'App\\Controller\\EpisodeController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        308 => [[['_route' => 'season_show', '_controller' => 'App\\Controller\\SeasonController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        321 => [[['_route' => 'season_edit', '_controller' => 'App\\Controller\\SeasonController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        329 => [[['_route' => 'season_delete', '_controller' => 'App\\Controller\\SeasonController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        350 => [[['_route' => 'tv_show_show', '_controller' => 'App\\Controller\\TvShowController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        363 => [[['_route' => 'tv_show_edit', '_controller' => 'App\\Controller\\TvShowController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        371 => [[['_route' => 'tv_show_delete', '_controller' => 'App\\Controller\\TvShowController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        408 => [
+        172 => [[['_route' => 'backoffice_category_show', '_controller' => 'App\\Controller\\Backoffice\\CategoryController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        185 => [[['_route' => 'backoffice_category_edit', '_controller' => 'App\\Controller\\Backoffice\\CategoryController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        193 => [[['_route' => 'backoffice_category_delete', '_controller' => 'App\\Controller\\Backoffice\\CategoryController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        222 => [[['_route' => 'backoffice_character_show', '_controller' => 'App\\Controller\\Backoffice\\CharacterController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        235 => [[['_route' => 'backoffice_character_edit', '_controller' => 'App\\Controller\\Backoffice\\CharacterController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        243 => [[['_route' => 'backoffice_character_delete', '_controller' => 'App\\Controller\\Backoffice\\CharacterController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        272 => [[['_route' => 'backoffice_episode_show', '_controller' => 'App\\Controller\\Backoffice\\EpisodeController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        285 => [[['_route' => 'backoffice_episode_edit', '_controller' => 'App\\Controller\\Backoffice\\EpisodeController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        293 => [[['_route' => 'backoffice_episode_delete', '_controller' => 'App\\Controller\\Backoffice\\EpisodeController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        320 => [[['_route' => 'backoffice_season_show', '_controller' => 'App\\Controller\\Backoffice\\SeasonController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        333 => [[['_route' => 'backoffice_season_edit', '_controller' => 'App\\Controller\\Backoffice\\SeasonController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        341 => [[['_route' => 'backoffice_season_delete', '_controller' => 'App\\Controller\\Backoffice\\SeasonController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        369 => [[['_route' => 'backoffice_tv_show_show', '_controller' => 'App\\Controller\\Backoffice\\TvShowController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        382 => [[['_route' => 'backoffice_tv_show_edit', '_controller' => 'App\\Controller\\Backoffice\\TvShowController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        390 => [[['_route' => 'backoffice_tv_show_delete', '_controller' => 'App\\Controller\\Backoffice\\TvShowController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        424 => [[['_route' => 'category_show', '_controller' => 'App\\Controller\\CategoryController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        437 => [[['_route' => 'category_edit', '_controller' => 'App\\Controller\\CategoryController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        445 => [[['_route' => 'category_delete', '_controller' => 'App\\Controller\\CategoryController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        474 => [[['_route' => 'character_show', '_controller' => 'App\\Controller\\CharacterController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        487 => [[['_route' => 'character_edit', '_controller' => 'App\\Controller\\CharacterController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        495 => [[['_route' => 'character_delete', '_controller' => 'App\\Controller\\CharacterController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        525 => [[['_route' => 'episode_show', '_controller' => 'App\\Controller\\EpisodeController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        538 => [[['_route' => 'episode_edit', '_controller' => 'App\\Controller\\EpisodeController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        546 => [[['_route' => 'episode_delete', '_controller' => 'App\\Controller\\EpisodeController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        574 => [[['_route' => 'season_show', '_controller' => 'App\\Controller\\SeasonController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        587 => [[['_route' => 'season_edit', '_controller' => 'App\\Controller\\SeasonController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        595 => [[['_route' => 'season_delete', '_controller' => 'App\\Controller\\SeasonController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        616 => [[['_route' => 'tv_show_show', '_controller' => 'App\\Controller\\TvShowController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        629 => [[['_route' => 'tv_show_edit', '_controller' => 'App\\Controller\\TvShowController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        637 => [[['_route' => 'tv_show_delete', '_controller' => 'App\\Controller\\TvShowController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        674 => [
             [['_route' => '_preview_error', '_controller' => 'error_controller::preview', '_format' => 'html'], ['code', '_format'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],

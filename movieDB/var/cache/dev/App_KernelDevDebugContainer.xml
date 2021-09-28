@@ -300,6 +300,13 @@
         <argument type="service" id=".service_locator.W9y3dzm.App\Controller\Backoffice\CategoryController"/>
       </call>
     </service>
+    <service id="App\Controller\Backoffice\CharacterController" class="App\Controller\Backoffice\CharacterController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.W9y3dzm.App\Controller\Backoffice\CharacterController"/>
+      </call>
+    </service>
     <service id="App\Controller\Backoffice\EpisodeController" class="App\Controller\Backoffice\EpisodeController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -372,11 +379,15 @@
     <service id="App\Form\CategoryType" class="App\Form\CategoryType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
+    <service id="App\Form\Character1Type" class="App\Form\Character1Type" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
     <service id="App\Form\CharacterType" class="App\Form\CharacterType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
-
-
+    <service id="App\Form\Episode1Type" class="App\Form\Episode1Type" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
     <service id="App\Form\EpisodeType" class="App\Form\EpisodeType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
@@ -887,9 +898,9 @@
       <argument type="collection">
         <argument>App\Form\Category1Type</argument>
         <argument>App\Form\CategoryType</argument>
+        <argument>App\Form\Character1Type</argument>
         <argument>App\Form\CharacterType</argument>
-
-
+        <argument>App\Form\Episode1Type</argument>
         <argument>App\Form\EpisodeType</argument>
         <argument>App\Form\Season1Type</argument>
         <argument>App\Form\SeasonType</argument>
@@ -1296,8 +1307,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension">
-
-      <argument type="service" id=".service_locator.TzGnVEI"/>
+      <argument type="service" id=".service_locator.ZKeN3_R"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -3633,6 +3643,9 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Backoffice\CategoryController" class="App\Controller\Backoffice\CategoryController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Backoffice\CategoryController" class="App\Controller\Backoffice\CategoryController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\Backoffice\CategoryController" class="App\Controller\Backoffice\CategoryController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Backoffice\CharacterController" class="App\Controller\Backoffice\CharacterController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Backoffice\CharacterController" class="App\Controller\Backoffice\CharacterController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\Backoffice\CharacterController" class="App\Controller\Backoffice\CharacterController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Backoffice\EpisodeController" class="App\Controller\Backoffice\EpisodeController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Backoffice\EpisodeController" class="App\Controller\Backoffice\EpisodeController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\Backoffice\EpisodeController" class="App\Controller\Backoffice\EpisodeController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -3666,10 +3679,12 @@
     <service id=".abstract.instanceof.App\Form\Category1Type" class="App\Form\Category1Type" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\CategoryType" class="App\Form\CategoryType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\CategoryType" class="App\Form\CategoryType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\Character1Type" class="App\Form\Character1Type" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\Character1Type" class="App\Form\Character1Type" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\CharacterType" class="App\Form\CharacterType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\CharacterType" class="App\Form\CharacterType" autowire="true" autoconfigure="true" abstract="true"/>
-
-
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\Episode1Type" class="App\Form\Episode1Type" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\Episode1Type" class="App\Form\Episode1Type" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\EpisodeType" class="App\Form\EpisodeType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\EpisodeType" class="App\Form\EpisodeType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\Season1Type" class="App\Form\Season1Type" autowire="true" abstract="true"/>
@@ -4041,12 +4056,6 @@
         <argument key="episode" type="service_closure" id=".errored..service_locator.SDvoBPQ.App\Entity\Episode"/>
       </argument>
     </service>
-    <service id=".service_locator.l2QwsaZ" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
-      </argument>
-    </service>
     <service id=".service_locator.aP4yyEH" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -4071,27 +4080,23 @@
         <argument key="tvShow" type="service_closure" id=".errored..service_locator.ywF_ZHN.App\Entity\TvShow"/>
       </argument>
     </service>
-
-    <service id=".service_locator.qARi95i" class="Symfony\Component\DependencyInjection\ServiceLocator">
-
+    <service id=".service_locator.l2QwsaZ" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
-        <argument key="characterRepository" type="service_closure" id="App\Repository\CharacterRepository"/>
+        <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
       </argument>
     </service>
-    <service id=".service_locator.P2WjH_8" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="character" type="service_closure" id=".errored..service_locator.P2WjH_8.App\Entity\Character"/>
-      </argument>
-    </service>
-    <service id=".service_locator.mSKhxjY" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.sgwvej8" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\Backoffice\CategoryController::delete" type="service_closure" id=".service_locator.478xwl1"/>
         <argument key="App\Controller\Backoffice\CategoryController::edit" type="service_closure" id=".service_locator.478xwl1"/>
         <argument key="App\Controller\Backoffice\CategoryController::index" type="service_closure" id=".service_locator.uCSWYWR"/>
         <argument key="App\Controller\Backoffice\CategoryController::show" type="service_closure" id=".service_locator.478xwl1"/>
+        <argument key="App\Controller\Backoffice\CharacterController::delete" type="service_closure" id=".service_locator.P2WjH_8"/>
+        <argument key="App\Controller\Backoffice\CharacterController::edit" type="service_closure" id=".service_locator.P2WjH_8"/>
+        <argument key="App\Controller\Backoffice\CharacterController::index" type="service_closure" id=".service_locator.fIVG_E."/>
+        <argument key="App\Controller\Backoffice\CharacterController::show" type="service_closure" id=".service_locator.P2WjH_8"/>
         <argument key="App\Controller\Backoffice\EpisodeController::delete" type="service_closure" id=".service_locator.SDvoBPQ"/>
         <argument key="App\Controller\Backoffice\EpisodeController::edit" type="service_closure" id=".service_locator.SDvoBPQ"/>
         <argument key="App\Controller\Backoffice\EpisodeController::index" type="service_closure" id=".service_locator.9QC5Nhh"/>
@@ -4137,6 +4142,10 @@
         <argument key="App\Controller\Backoffice\CategoryController:edit" type="service_closure" id=".service_locator.478xwl1"/>
         <argument key="App\Controller\Backoffice\CategoryController:index" type="service_closure" id=".service_locator.uCSWYWR"/>
         <argument key="App\Controller\Backoffice\CategoryController:show" type="service_closure" id=".service_locator.478xwl1"/>
+        <argument key="App\Controller\Backoffice\CharacterController:delete" type="service_closure" id=".service_locator.P2WjH_8"/>
+        <argument key="App\Controller\Backoffice\CharacterController:edit" type="service_closure" id=".service_locator.P2WjH_8"/>
+        <argument key="App\Controller\Backoffice\CharacterController:index" type="service_closure" id=".service_locator.fIVG_E."/>
+        <argument key="App\Controller\Backoffice\CharacterController:show" type="service_closure" id=".service_locator.P2WjH_8"/>
         <argument key="App\Controller\Backoffice\EpisodeController:delete" type="service_closure" id=".service_locator.SDvoBPQ"/>
         <argument key="App\Controller\Backoffice\EpisodeController:edit" type="service_closure" id=".service_locator.SDvoBPQ"/>
         <argument key="App\Controller\Backoffice\EpisodeController:index" type="service_closure" id=".service_locator.9QC5Nhh"/>
@@ -4229,15 +4238,14 @@
       <argument type="service" id="debug.argument_resolver.not_tagged_controller.inner"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.TzGnVEI" class="Symfony\Component\DependencyInjection\ServiceLocator">
-
+    <service id=".service_locator.ZKeN3_R" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Form\Category1Type" type="service_closure" id="App\Form\Category1Type"/>
         <argument key="App\Form\CategoryType" type="service_closure" id="App\Form\CategoryType"/>
+        <argument key="App\Form\Character1Type" type="service_closure" id="App\Form\Character1Type"/>
         <argument key="App\Form\CharacterType" type="service_closure" id="App\Form\CharacterType"/>
-
-
+        <argument key="App\Form\Episode1Type" type="service_closure" id="App\Form\Episode1Type"/>
         <argument key="App\Form\EpisodeType" type="service_closure" id="App\Form\EpisodeType"/>
         <argument key="App\Form\Season1Type" type="service_closure" id="App\Form\Season1Type"/>
         <argument key="App\Form\SeasonType" type="service_closure" id="App\Form\SeasonType"/>
@@ -4416,6 +4424,12 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.W9y3dzm" method="withContext"/>
     </service>
+    <service id=".service_locator.W9y3dzm.App\Controller\Backoffice\CharacterController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\Backoffice\CharacterController"/>
+      <argument>App\Controller\Backoffice\CharacterController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.W9y3dzm" method="withContext"/>
+    </service>
     <service id=".service_locator.W9y3dzm.App\Controller\Backoffice\EpisodeController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\Backoffice\EpisodeController"/>
       <argument>App\Controller\Backoffice\EpisodeController</argument>
@@ -4525,7 +4539,6 @@
     <service id=".errored..service_locator.SDvoBPQ.App\Entity\Episode" class="App\Entity\Episode"/>
     <service id=".errored..service_locator.WofskxZ.App\Entity\Season" class="App\Entity\Season"/>
     <service id=".errored..service_locator.ywF_ZHN.App\Entity\TvShow" class="App\Entity\TvShow"/>
-    <service id=".errored..service_locator.P2WjH_8.App\Entity\Character" class="App\Entity\Character"/>
     <service id=".service_locator.XXv1IfR" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -4590,15 +4603,12 @@
     <service id="debug.argument_resolver.request.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\RequestValueResolver"/>
     <service id="debug.argument_resolver.session.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\SessionValueResolver"/>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-
-      <argument type="service" id=".service_locator.qARi95i"/>
-
+      <argument type="service" id=".service_locator.sgwvej8"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator.qARi95i"/>
-
+      <argument type="service" id=".service_locator.sgwvej8"/>
     </service>
     <service id=".doctrine.orm.default_metadata_driver.inner" class="Doctrine\Persistence\Mapping\Driver\MappingDriverChain">
       <call method="addDriver">
@@ -5299,9 +5309,7 @@
     <service id="Psr\Log\LoggerInterface" alias="monolog.logger"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.0GV1BZZ" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-
-    <service id="argument_resolver.controller_locator" alias=".service_locator.qARi95i"/>
-
+    <service id="argument_resolver.controller_locator" alias=".service_locator.sgwvej8"/>
     <service id="session" alias=".session.do-not-use" public="true">
       <deprecated package="symfony/framework-bundle" version="5.3">The "%alias_id%" service and "SessionInterface" alias are deprecated, use "$requestStack-&gt;getSession()" instead.</deprecated>
     </service>
@@ -5324,13 +5332,11 @@
     <service id=".service_locator.gEhYELd" alias=".service_locator.P2WjH_8"/>
     <service id=".service_locator.EtrKZk1" alias=".service_locator.9QC5Nhh"/>
     <service id=".service_locator.wt8qZNB" alias=".service_locator.SDvoBPQ"/>
-    <service id=".service_locator.Er0_7SX" alias=".service_locator.l2QwsaZ"/>
     <service id=".service_locator.AGA0qC9" alias=".service_locator.aP4yyEH"/>
     <service id=".service_locator.XIFtY8Y" alias=".service_locator.WofskxZ"/>
     <service id=".service_locator.zN4PnjM" alias=".service_locator.WUos75f"/>
     <service id=".service_locator.xJohH2V" alias=".service_locator.ywF_ZHN"/>
-    <service id=".service_locator.wMFykYJ" alias=".service_locator.fIVG_E."/>
-    <service id=".service_locator.gEhYELd" alias=".service_locator.P2WjH_8"/>
+    <service id=".service_locator.Er0_7SX" alias=".service_locator.l2QwsaZ"/>
     <service id=".service_locator.bkUSUfi" alias=".service_locator.PWgDhjH"/>
     <service id=".service_locator.kMTdsg." alias=".service_locator.W9y3dzm"/>
     <service id="validator" alias="debug.validator" public="true"/>

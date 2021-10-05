@@ -11,22 +11,22 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/backoffice/tv/show")
+ * @Route("/backoffice/tvshow", name="backoffice_")
  */
 class TvShowController extends AbstractController
 {
     /**
-     * @Route("/", name="backoffice_tv_show_index", methods={"GET"})
+     * @Route("/", name="index", methods={"GET"})
      */
     public function index(TvShowRepository $tvShowRepository): Response
     {
-        return $this->render('backoffice/tv_show/index.html.twig', [
+        return $this->render('backoffice/tvshow/index.html.twig', [
             'tv_shows' => $tvShowRepository->findAll(),
         ]);
     }
 
     /**
-     * @Route("/new", name="backoffice_tv_show_new", methods={"GET","POST"})
+     * @Route("/new", name="new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -39,27 +39,27 @@ class TvShowController extends AbstractController
             $entityManager->persist($tvShow);
             $entityManager->flush();
 
-            return $this->redirectToRoute('backoffice_tv_show_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('backoffice_tvshow_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('backoffice/tv_show/new.html.twig', [
+        return $this->renderForm('backoffice/tvshow/new.html.twig', [
             'tv_show' => $tvShow,
             'form' => $form,
         ]);
     }
 
     /**
-     * @Route("/{id}", name="backoffice_tv_show_show", methods={"GET"})
+     * @Route("/{id}", name="show", methods={"GET"})
      */
     public function show(TvShow $tvShow): Response
     {
-        return $this->render('backoffice/tv_show/show.html.twig', [
+        return $this->render('backoffice/tvshow/show.html.twig', [
             'tv_show' => $tvShow,
         ]);
     }
 
     /**
-     * @Route("/{id}/edit", name="backoffice_tv_show_edit", methods={"GET","POST"})
+     * @Route("/{id}/edit", name="edit", methods={"GET","POST"})
      */
     public function edit(Request $request, TvShow $tvShow): Response
     {
@@ -69,17 +69,17 @@ class TvShowController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('backoffice_tv_show_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('backoffice_tvshow_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('backoffice/tv_show/edit.html.twig', [
+        return $this->renderForm('backoffice/tvshow/edit.html.twig', [
             'tv_show' => $tvShow,
             'form' => $form,
         ]);
     }
 
     /**
-     * @Route("/{id}", name="backoffice_tv_show_delete", methods={"POST"})
+     * @Route("/{id}", name="delete", methods={"POST"})
      */
     public function delete(Request $request, TvShow $tvShow): Response
     {
@@ -89,6 +89,6 @@ class TvShowController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('backoffice_tv_show_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('backoffice_tvshow_index', [], Response::HTTP_SEE_OTHER);
     }
 }

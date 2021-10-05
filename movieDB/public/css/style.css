@@ -30,9 +30,6 @@ body {
     border-top-right-radius: 0;
 }
 
-section {
-    background-image: url("https://picsum.photos/id/10/1960/1280");
-    background-position: 25% 20%;
-
+.background {
+    background-image: url('../images/background/layered-waves-haikei.svg');
 }
-

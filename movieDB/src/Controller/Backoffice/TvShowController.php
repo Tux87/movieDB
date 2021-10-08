@@ -3,15 +3,16 @@
 namespace App\Controller\Backoffice;
 
 use App\Entity\TvShow;
-use App\Form\TvShow1Type;
+use App\Form\TvShowType;
 use App\Repository\TvShowRepository;
+use DateTimeImmutable;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/backoffice/tvshow", name="backoffice_")
+ * @Route("/backoffice/tvshow", name="backoffice_tv_show_")
  */
 class TvShowController extends AbstractController
 {
@@ -20,7 +21,7 @@ class TvShowController extends AbstractController
      */
     public function index(TvShowRepository $tvShowRepository): Response
     {
-        return $this->render('backoffice/tvshow/index.html.twig', [
+        return $this->render('backoffice/tv_show/index.html.twig', [
             'tv_shows' => $tvShowRepository->findAll(),
         ]);
     }
@@ -31,7 +32,7 @@ class TvShowController extends AbstractController
     public function new(Request $request): Response
     {
         $tvShow = new TvShow();
-        $form = $this->createForm(TvShow1Type::class, $tvShow);
+        $form = $this->createForm(TvShowType::class, $tvShow);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -39,47 +40,48 @@ class TvShowController extends AbstractController
             $entityManager->persist($tvShow);
             $entityManager->flush();
 
-            return $this->redirectToRoute('backoffice_tvshow_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('backoffice_tv_show_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('backoffice/tvshow/new.html.twig', [
+        return $this->renderForm('backoffice/tv_show/new.html.twig', [
             'tv_show' => $tvShow,
             'form' => $form,
         ]);
     }
 
     /**
-     * @Route("/{id}", name="show", methods={"GET"})
+     * @Route("/{id}", name="show", methods={"GET"}, requirements={"id"="\d+"})
      */
     public function show(TvShow $tvShow): Response
     {
-        return $this->render('backoffice/tvshow/show.html.twig', [
+        return $this->render('backoffice/tv_show/show.html.twig', [
             'tv_show' => $tvShow,
         ]);
     }
 
     /**
-     * @Route("/{id}/edit", name="edit", methods={"GET","POST"})
+     * @Route("/edit/{id}", name="edit", methods={"GET","POST"}, requirements={"id"="\d+"})
      */
     public function edit(Request $request, TvShow $tvShow): Response
     {
-        $form = $this->createForm(TvShow1Type::class, $tvShow);
-        $form->handleRequest($request);
+        $tvShowForm = $this->createForm(TvShowType::class, $tvShow);
+        $tvShowForm->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($tvShowForm->isSubmitted() && $tvShowForm->isValid()) {
+            $tvShow->setUpdatedAt(new DateTimeImmutable());
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('backoffice_tvshow_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('backoffice_tv_show_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('backoffice/tvshow/edit.html.twig', [
-            'tv_show' => $tvShow,
-            'form' => $form,
+        return $this->renderForm('backoffice/tv_show/edit.html.twig', [
+            'tv_show' => $tvShowForm,
+            'tvShow' => $tvShow,
         ]);
     }
 
     /**
-     * @Route("/{id}", name="delete", methods={"POST"})
+     * @Route("/delete/{id}", name="delete", methods={"GET", "POST"}, requirements={"id"="\d+"})
      */
     public function delete(Request $request, TvShow $tvShow): Response
     {
@@ -89,6 +91,6 @@ class TvShowController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('backoffice_tvshow_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('backoffice_tv_show_index', [], Response::HTTP_SEE_OTHER);
     }
 }

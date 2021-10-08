@@ -29,9 +29,9 @@ class Category
      */
     private $tvShows;
 
-    public function __construct()
+    public function __toString() 
     {
-        $this->tvShows = new ArrayCollection();
+        return $this->name;
     }
 
     public function getId(): ?int

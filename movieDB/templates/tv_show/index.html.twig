@@ -20,25 +20,18 @@
         </section>
 
         <div class="py-5 bg-light">
-            <div class="container">
-                {% for tv_show in tv_shows %}
-                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                        <div class="col">
+            <div class="container">                
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                    {% for tv_show in tv_shows %}
+                        <div class="col">                        
                             <div class="card shadow-sm">
-                                <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                                    xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                                    preserveAspectRatio="xMidYMid slice" focusable="false">
-                                    <title>Placeholder</title>
-                                    <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
-                                        dy=".3em">{{ tv_show.title }}</text>
-                                </svg>
+                                <img src="{{ tv_show.image }}" class="card-img-top" alt="{{ tv_show.title }} image">
 
                                 <div class="card-body">
                                     <p class="card-text">{{ tv_show.synopsis }}</p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
                                             <a href="tvshow_details.html" class="btn btn-sm btn-outline-secondary">Voir</a>
-                                            <a href="#" class="btn btn-sm btn-outline-secondary">Editer</a>
                                         </div>
                                         <small class="text-muted">
                                             10
@@ -56,22 +49,5 @@
                 </div>
             </div>
         </div>
-
-    </main>
-    
-                {# <td>{{ tv_show.id }}</td>
-                <td>{{ tv_show.title }}</td>
-                <td>{{ tv_show.synopsis }}</td>
-                <td>{{ tv_show.image }}</td>
-                <td>{{ tv_show.nbLikes }}</td>
-                <td>{{ tv_show.publishedAt ? tv_show.publishedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ tv_show.createdAt ? tv_show.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ tv_show.updatedAt ? tv_show.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('tv_show_show', {'id': tv_show.id}) }}">show</a>
-                </td>
-            </tr> #}
-            
-
-    <a href="{{ path('tv_show_new') }}">Create new</a>
+    </main>   
 {% endblock %}

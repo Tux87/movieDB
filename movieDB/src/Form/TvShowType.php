@@ -2,8 +2,12 @@
 
 namespace App\Form;
 
+use App\Entity\Category;
 use App\Entity\TvShow;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -15,12 +19,14 @@ class TvShowType extends AbstractType
             ->add('title')
             ->add('synopsis')
             ->add('image')
-            ->add('nbLikes')
+            ->add('nbLikes', null, [
+                'disabled' => 'disabled'
+            ])
             ->add('publishedAt')
-            ->add('createdAt')
-            ->add('updatedAt')
-            ->add('Cast')
-            ->add('Category')
+            ->add('createdAt', null, [
+                'widget' => 'choice',
+            ])   
+            ->add('Category')        
         ;
     }
 

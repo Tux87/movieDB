@@ -65,10 +65,11 @@ class Character
      */
     private $tvShows;
 
-    public function __construct()
+    public function __toString()
     {
-        $this->tvShows = new ArrayCollection();
+        return $this->firstName;
     }
+
 
     public function getId(): ?int
     {

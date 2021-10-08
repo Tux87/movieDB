@@ -3,7 +3,7 @@
 namespace App\Controller\Backoffice;
 
 use App\Entity\Episode;
-use App\Form\Episode1Type;
+use App\Form\EpisodeType;
 use App\Repository\EpisodeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,7 +31,7 @@ class EpisodeController extends AbstractController
     public function new(Request $request): Response
     {
         $episode = new Episode();
-        $form = $this->createForm(Episode1Type::class, $episode);
+        $form = $this->createForm(EpisodeType::class, $episode);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -63,7 +63,7 @@ class EpisodeController extends AbstractController
      */
     public function edit(Request $request, Episode $episode): Response
     {
-        $form = $this->createForm(Episode1Type::class, $episode);
+        $form = $this->createForm(EpisodeType::class, $episode);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

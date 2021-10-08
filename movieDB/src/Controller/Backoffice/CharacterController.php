@@ -3,8 +3,9 @@
 namespace App\Controller\Backoffice;
 
 use App\Entity\Character;
-use App\Form\Character1Type;
+use App\Form\CharacterType;
 use App\Repository\CharacterRepository;
+use DateTimeImmutable;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,7 +32,7 @@ class CharacterController extends AbstractController
     public function new(Request $request): Response
     {
         $character = new Character();
-        $form = $this->createForm(Character1Type::class, $character);
+        $form = $this->createForm(CharacterType::class, $character);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -63,18 +64,19 @@ class CharacterController extends AbstractController
      */
     public function edit(Request $request, Character $character): Response
     {
-        $form = $this->createForm(Character1Type::class, $character);
-        $form->handleRequest($request);
+        $characterForm = $this->createForm(CharacterType::class, $character);
+        $characterForm->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($characterForm->isSubmitted() && $characterForm->isValid()) {
+            $character->setUpdatedAt(new DateTimeImmutable());
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('backoffice_character_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('backoffice/character/edit.html.twig', [
+            'character_form' => $characterForm,
             'character' => $character,
-            'form' => $form,
         ]);
     }
 

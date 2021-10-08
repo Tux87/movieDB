@@ -19,7 +19,6 @@ class CharacterType extends AbstractType
             ->add('age')
             ->add('publishedAt')
             ->add('createdAt')
-            ->add('updatedAt')
             ->add('tvShows')
         ;
     }

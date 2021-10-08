@@ -1,0 +1,41 @@
+<div class="col-2">    
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item">
+        <a href="{{ path('backoffice_tv_show_index') }}" 
+          {% if app.request.get('_route') starts with 'backoffice_tv_show' %}
+          class="nav-link active" aria-current="page"
+          {% else %}
+          class="nav-link"
+          {% endif %}     
+          >     
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
+          Series
+        </a>
+      </li>
+      <li>
+        <a href="{{ path('backoffice_character_index') }}" 
+          {% if app.request.get('_route') starts with 'backoffice_character' %}
+          class="nav-link active" aria-current="page"
+          {% else %}
+          class="nav-link"
+          {% endif %}     
+          >
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
+          Personnages
+        </a>
+      </li>
+      <li>
+        <a href="{{ path('backoffice_category_index') }}" 
+        {% if app.request.get('_route') starts with 'backoffice_category' %}
+          class="nav-link active" aria-current="page"
+          {% else %}
+          class="nav-link"
+          {% endif %}     
+          >
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
+          Categories
+        </a>
+      </li>            
+    </ul>    
+  </div>

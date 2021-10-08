@@ -5,9 +5,30 @@
 {% block body %}
     <h1>Edit Character</h1>
 
-    {{ include('backoffice_character/_form.html.twig', {'button_label': 'Update'}) }}
+{{ form_start(character_form) }}
+    {{ form_errors(character_form) }} 
+    {{ form_row(character_form.firstName) }}
+    {{ form_row(character_form.lastName) }}
+    {{ form_row(character_form.gender) }}
+    {{ form_row(character_form.bio) }} 
+    {{ form_row(character_form.age) }} 
+    {{ form_row(character_form.createdAt) }} 
+    {{ form_row(character_form.publishedAt) }} 
+
+
+    <button type="submit" class="btn btn-primary mt-4">
+    {% if 'backoffice_character_edit' == app.request.get('_route') %}
+    Create
+    {% else %}
+    Update
+    {% endif %}
+    </button>
+
+{{ form_end(character_form) }} 
+
+    {# {{ include('backoffice/character/_form.html.twig', {'button_label': 'Update'}) }} #}
 
     <a href="{{ path('backoffice_character_index') }}">back to list</a>
 
-    {{ include('backoffice_character/_delete_form.html.twig') }}
+    {{ include('backoffice/character/_delete_form.html.twig') }}
 {% endblock %}

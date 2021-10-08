@@ -3,7 +3,7 @@
 namespace App\Controller\Backoffice;
 
 use App\Entity\Season;
-use App\Form\Season1Type;
+use App\Form\SeasonType;
 use App\Repository\SeasonRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,7 +31,7 @@ class SeasonController extends AbstractController
     public function new(Request $request): Response
     {
         $season = new Season();
-        $form = $this->createForm(Season1Type::class, $season);
+        $form = $this->createForm(SeasonType::class, $season);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -63,7 +63,7 @@ class SeasonController extends AbstractController
      */
     public function edit(Request $request, Season $season): Response
     {
-        $form = $this->createForm(Season1Type::class, $season);
+        $form = $this->createForm(SeasonType::class, $season);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

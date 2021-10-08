@@ -68,12 +68,10 @@ class TvShow
      * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="tvShows")
      */
     private $Category;
-
-    public function __construct()
+  
+    public function __toString() 
     {
-        $this->Season = new ArrayCollection();
-        $this->Cast = new ArrayCollection();
-        $this->Category = new ArrayCollection();
+        return $this->title;
     }
 
     public function getId(): ?int

@@ -3,17 +3,21 @@
 {% block title %}Character index{% endblock %}
 
 {% block body %}
-    <h1>Character index</h1>
 
+<div class="row">
+        <div class="col">
+            <h1>Character index</h1>
+        </div>
+        <a href="{{ path('backoffice_character_new') }}">Ajouter un personnage</a>
+
+{% include "backoffice/_partials/_navbar_backoffice.html.twig" %} 
+<div class="col-10">
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>FirstName</th>
                 <th>LastName</th>
-                <th>Gender</th>
-                <th>Bio</th>
-                <th>Age</th>
                 <th>PublishedAt</th>
                 <th>CreatedAt</th>
                 <th>UpdatedAt</th>
@@ -24,11 +28,8 @@
         {% for character in characters %}
             <tr>
                 <td>{{ character.id }}</td>
-                <td>{{ character.firstName }}</td>
+                <td><a href="{{ path('backoffice_character_show', {'id': character.id}) }}">{{ character.firstName }}</a></td>
                 <td>{{ character.lastName }}</td>
-                <td>{{ character.gender }}</td>
-                <td>{{ character.bio }}</td>
-                <td>{{ character.age }}</td>
                 <td>{{ character.publishedAt ? character.publishedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ character.createdAt ? character.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ character.updatedAt ? character.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
@@ -44,6 +45,5 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('backoffice_character_new') }}">Create new</a>
+</div>    
 {% endblock %}

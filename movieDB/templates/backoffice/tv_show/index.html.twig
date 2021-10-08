@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TvShow index{% endblock %}
+
+{% block body %}
+
+<div class="row">
+        <div class="col">
+            <h1>TvShow index</h1>
+        </div>
+        <a href="{{ path('backoffice_tv_show_new') }}">Ajouter une serie</a>
+
+{% include "backoffice/_partials/_navbar_backoffice.html.twig" %}   
+
+        <div class="col-10">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Title</th>  
+                        <th>NbLikes</th>
+                        <th>PublishedAt</th>
+                        <th>CreatedAt</th>
+                        <th>UpdatedAt</th>
+                        <th>actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for tv_show in tv_shows %}
+                    <tr>
+                        <td>{{ tv_show.id }}</td>
+                        <td><a href="{{ path('backoffice_tv_show_show', {'id': tv_show.id}) }}">{{ tv_show.title }}</a></td>
+                        <td>{{ tv_show.nbLikes }}</td>
+                        <td>{{ tv_show.publishedAt ? tv_show.publishedAt|date('Y-m-d H:i:s') : '' }}</td>
+                        <td>{{ tv_show.createdAt ? tv_show.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                        <td>{{ tv_show.updatedAt ? tv_show.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                        <td>
+                            <a href="{{ path('backoffice_tv_show_show', {'id': tv_show.id}) }}">show</a>
+                            <a href="{{ path('backoffice_tv_show_edit', {'id': tv_show.id}) }}">edit</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="9">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>    
+        </div>
+    </div>
+
+{% endblock %}

@@ -40,7 +40,7 @@ class FakeMakerController extends AbstractController
         for ($seasonNumber = 1; $seasonNumber <= 7; $seasonNumber++) {
             $season = new Season();
             $seasonYear = $year + $seasonNumber;
-            $season->setPublishedAt(new DateTimeImmutable($seasonYear . '-01-01'));
+            $season->setCreatedAt(new DateTimeImmutable($seasonYear . '-01-01'));
             $season->setSeasonNumber($seasonNumber);
             // associer les saisons au show
             $season->setTvShow($got);
@@ -97,7 +97,7 @@ class FakeMakerController extends AbstractController
         for ($seasonNumber = 1; $seasonNumber <= 4; $seasonNumber++) {
             $season = new Season();
             $seasonYear = $year + $seasonNumber;
-            $season->setPublishedAt(new DateTimeImmutable($seasonYear . '-01-01'));
+            $season->setCreatedAt(new DateTimeImmutable($seasonYear . '-01-01'));
             $season->setSeasonNumber($seasonNumber);
             // associer les saisons au show
             $season->setTvShow($tvShow);

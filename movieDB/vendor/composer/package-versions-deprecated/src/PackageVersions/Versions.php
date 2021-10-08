@@ -94,8 +94,11 @@ final class Versions
   'symfony/proxy-manager-bridge' => 'v5.3.4@76e61f33f6a34a340bf6e02211214f466e8e1dba',
   'symfony/routing' => 'v5.3.7@be865017746fe869007d94220ad3f5297951811b',
   'symfony/runtime' => 'v5.3.4@685a4a5491e25c7f2dd251d8fcca583b427ff290',
+  'symfony/security-bundle' => 'v5.3.8@b755ed5d11685ba9aaa27b060250e5a57371f37f',
   'symfony/security-core' => 'v5.3.7@bd3a055d1092a46f6b6599bcda5a7624cd804cb1',
   'symfony/security-csrf' => 'v5.3.4@94b533195cf7fb21f3fae8ce349861c6401d969e',
+  'symfony/security-guard' => 'v5.3.7@25f8d2a206505514a0ff14b16c4fb4e17a10cf18',
+  'symfony/security-http' => 'v5.3.8@d499ecde6f81de42e557514626d6d5c14c0bdb78',
   'symfony/service-contracts' => 'v2.4.0@f040a30e04b57fbcc9c6cbcf4dbaa96bd318b9bb',
   'symfony/stopwatch' => 'v5.3.4@b24c6a92c6db316fee69e38c80591e080e41536c',
   'symfony/string' => 'v5.3.7@8d224396e28d30f81969f083a58763b8b9ceb0a5',
@@ -115,10 +118,10 @@ final class Versions
   'symfony/monolog-bridge' => 'v5.3.7@4ace41087254f099b6743333155071438bfb12c3',
   'symfony/monolog-bundle' => 'v3.7.0@4054b2e940a25195ae15f0a49ab0c51718922eb4',
   'symfony/web-profiler-bundle' => 'v5.3.5@95fb24b09551688a09cffac95a2ddbb907833f07',
-  'symfony/polyfill-ctype' => '*@d393c3f2bc3ec0d42f06f3cc7e9057f19f3b7450',
-  'symfony/polyfill-iconv' => '*@d393c3f2bc3ec0d42f06f3cc7e9057f19f3b7450',
-  'symfony/polyfill-php72' => '*@d393c3f2bc3ec0d42f06f3cc7e9057f19f3b7450',
-  '__root__' => 'dev-main@d393c3f2bc3ec0d42f06f3cc7e9057f19f3b7450',
+  'symfony/polyfill-ctype' => '*@4966634d5a347a6f8c04cff83c2438101350ab3d',
+  'symfony/polyfill-iconv' => '*@4966634d5a347a6f8c04cff83c2438101350ab3d',
+  'symfony/polyfill-php72' => '*@4966634d5a347a6f8c04cff83c2438101350ab3d',
+  '__root__' => 'dev-main@4966634d5a347a6f8c04cff83c2438101350ab3d',
 );
 
     private function __construct()
